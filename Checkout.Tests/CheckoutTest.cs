@@ -11,14 +11,17 @@ namespace Checkout.Tests
     [TestFixture]
     public class CheckoutTest
     {
-        [Test]
-        public void ScanOneItemReturnsCorrectPrice()
+        [TestCase("A",50)]
+        [TestCase("B", 30)]
+        [TestCase("C", 20)]
+        [TestCase("D", 15)]
+        public void ScanOneItemReturnsCorrectPrice(string item, int expectedPrice)
         {
             var checkout = new Checkout();
 
-            int price = checkout.Scan("A");
+            int price = checkout.Scan(item);
 
-            Assert.AreEqual(50, price);
+            Assert.AreEqual(expectedPrice, price);
         }
     }
 }
