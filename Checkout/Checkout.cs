@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Checkout
 {
-    class Checkout
+    public class Checkout
     {
+        public int Scan(string v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

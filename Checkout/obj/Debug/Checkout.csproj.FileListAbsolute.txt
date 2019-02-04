@@ -1,0 +1,7 @@
+C:\Users\kelly_000\SkyDrive\Documents\Projects\Checkout\Checkout\bin\Debug\Checkout.exe.config
+C:\Users\kelly_000\SkyDrive\Documents\Projects\Checkout\Checkout\bin\Debug\Checkout.exe
+C:\Users\kelly_000\SkyDrive\Documents\Projects\Checkout\Checkout\bin\Debug\Checkout.pdb
+C:\Users\kelly_000\SkyDrive\Documents\Projects\Checkout\Checkout\obj\Debug\Checkout.csprojAssemblyReference.cache
+C:\Users\kelly_000\SkyDrive\Documents\Projects\Checkout\Checkout\obj\Debug\Checkout.csproj.CoreCompileInputs.cache
+C:\Users\kelly_000\SkyDrive\Documents\Projects\Checkout\Checkout\obj\Debug\Checkout.exe
+C:\Users\kelly_000\SkyDrive\Documents\Projects\Checkout\Checkout\obj\Debug\Checkout.pdb
