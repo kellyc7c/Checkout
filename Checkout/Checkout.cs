@@ -8,9 +8,9 @@ namespace Checkout
 {
     public class Checkout
     {
-        public int Scan(string v)
+        public int Scan(string item)
         {
-            throw new NotImplementedException();
+            return 50;
         }
     }
 }
