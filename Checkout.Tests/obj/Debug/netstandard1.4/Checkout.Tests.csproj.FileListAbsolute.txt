@@ -1,0 +1,5 @@
+C:\Users\kelly_000\SkyDrive\Documents\Projects\Checkout\Checkout.Tests\bin\Debug\netstandard1.4\Checkout.Tests.deps.json
+C:\Users\kelly_000\SkyDrive\Documents\Projects\Checkout\Checkout.Tests\bin\Debug\netstandard1.4\Checkout.exe
+C:\Users\kelly_000\SkyDrive\Documents\Projects\Checkout\Checkout.Tests\obj\Debug\netstandard1.4\Checkout.Tests.csprojAssemblyReference.cache
+C:\Users\kelly_000\SkyDrive\Documents\Projects\Checkout\Checkout.Tests\obj\Debug\netstandard1.4\Checkout.Tests.csproj.CoreCompileInputs.cache
+C:\Users\kelly_000\SkyDrive\Documents\Projects\Checkout\Checkout.Tests\obj\Debug\netstandard1.4\Checkout.Tests.AssemblyInfo.cs
