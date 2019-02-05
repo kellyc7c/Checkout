@@ -47,7 +47,7 @@ namespace Checkout.Tests
         [TestCase("BC", 50)]
         [TestCase("CD", 35)]
         [TestCase("DA", 65)]
-        public void ScanTwoDifferentItemReturnsCorrectPrice(string items, int expectedPrice)
+        public void ScanTwoDifferentItemsReturnsCorrectPrice(string items, int expectedPrice)
         {
             var checkout = new Checkout(_prices);
 
@@ -60,7 +60,19 @@ namespace Checkout.Tests
         [TestCase("BCA", 100)]
         [TestCase("CDB", 65)]
         [TestCase("DAB", 95)]
-        public void ScanThreeDifferentItemReturnsCorrectPrice(string items, int expectedPrice)
+        public void ScanThreeDifferentItemsReturnsCorrectPrice(string items, int expectedPrice)
+        {
+            var checkout = new Checkout(_prices);
+
+            int price = checkout.Scan(items);
+
+            Assert.AreEqual(expectedPrice, price);
+        }
+
+        [TestCase("ABCD", 115)]
+        [TestCase("AABCD", 165)]
+        [TestCase("BADCDB", 175)]
+        public void ScanMultipleDifferentItemsReturnsCorrectPrice(string items, int expectedPrice)
         {
             var checkout = new Checkout(_prices);
 
