@@ -86,5 +86,15 @@ namespace Checkout.Tests
 
             Assert.AreEqual(expectedPrice, price);
         }
+
+        [TestCase("AAA", 130)]
+        public void CheckDiscountApplysToTotalForThreeOfTheSameItem(string items, int expectedPrice)
+        {
+            var checkout = new Checkout(_prices, _offers);
+
+            int price = checkout.Scan(items);
+
+            Assert.AreEqual(expectedPrice, price);
+        }
     }
 }
