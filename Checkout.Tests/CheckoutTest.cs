@@ -20,7 +20,7 @@ namespace Checkout.Tests
         private List<Tuple<string, int, int>> _offers = new List<Tuple<string, int, int>>()
         {
             new Tuple<string, int, int>("A", 3, 20 ),
-            new Tuple<string, int, int>("B", 2, 45 )
+            new Tuple<string, int, int>("B", 2, 15 )
         };
 
         [TestCase("A", 50)]
@@ -88,6 +88,17 @@ namespace Checkout.Tests
 
         [TestCase("AAA", 130)]
         public void CheckDiscountApplysToTotalForThreeOfTheSameItem(string items, int expectedPrice)
+        {
+            var checkout = new Checkout(_prices, _offers);
+
+            int price = checkout.Scan(items);
+
+            Assert.AreEqual(expectedPrice, price);
+        }
+
+        [TestCase("BACCADA", 215)]
+        [TestCase("BBACCADAABAA", 390)]
+        public void CheckDiscountApplysForOffersWhenMultipleDifferntAreScanned(string items, int expectedPrice)
         {
             var checkout = new Checkout(_prices, _offers);
 
