@@ -17,13 +17,19 @@ namespace Checkout.Tests
             { "C", 20 },
             { "D", 15 } };
 
+        private List<Tuple<string, int, int>> _offers = new List<Tuple<string, int, int>>()
+        {
+            new Tuple<string, int, int>("A", 3, 20 ),
+            new Tuple<string, int, int>("B", 2, 45 )
+        };
+
         [TestCase("A", 50)]
         [TestCase("B", 30)]
         [TestCase("C", 20)]
         [TestCase("D", 15)]
         public void ScanOneItemReturnsCorrectPrice(string item, int expectedPrice)
         {
-            var checkout = new Checkout(_prices);
+            var checkout = new Checkout(_prices, _offers);
 
             int price = checkout.Scan(item);
 
@@ -36,7 +42,7 @@ namespace Checkout.Tests
         [TestCase("DD", 30)]
         public void ScanTwoOfTheSameItemReturnsCorrectPrice(string items, int expectedPrice)
         {
-            var checkout = new Checkout(_prices);
+            var checkout = new Checkout(_prices, _offers);
 
             int price = checkout.Scan(items);
 
@@ -49,7 +55,7 @@ namespace Checkout.Tests
         [TestCase("DA", 65)]
         public void ScanTwoDifferentItemsReturnsCorrectPrice(string items, int expectedPrice)
         {
-            var checkout = new Checkout(_prices);
+            var checkout = new Checkout(_prices, _offers);
 
             int price = checkout.Scan(items);
 
@@ -62,7 +68,7 @@ namespace Checkout.Tests
         [TestCase("DAB", 95)]
         public void ScanThreeDifferentItemsReturnsCorrectPrice(string items, int expectedPrice)
         {
-            var checkout = new Checkout(_prices);
+            var checkout = new Checkout(_prices, _offers);
 
             int price = checkout.Scan(items);
 
@@ -74,7 +80,7 @@ namespace Checkout.Tests
         [TestCase("BADCDB", 160)]
         public void ScanMultipleDifferentItemsReturnsCorrectPrice(string items, int expectedPrice)
         {
-            var checkout = new Checkout(_prices);
+            var checkout = new Checkout(_prices, _offers);
 
             int price = checkout.Scan(items);
 

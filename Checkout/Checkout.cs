@@ -9,10 +9,12 @@ namespace Checkout
     public class Checkout
     {
         private Dictionary<string, int> _prices;
+        private List<Tuple<string, int, int>> _offers;
 
-        public Checkout(Dictionary<string, int> prices)
+        public Checkout(Dictionary<string, int> prices, List<Tuple<string, int, int>> offers)
         {
             _prices = prices;
+            _offers = offers;
         }
 
         public int Scan(string items)
