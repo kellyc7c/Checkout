@@ -26,6 +26,25 @@ namespace Checkout
                 total += _prices[item.ToString()];
             }
 
+            return ApplyDiscounts(items, total);
+        }
+
+        private int ApplyDiscounts(string items, int total)
+        {
+            foreach (Tuple<string, int, int> offer in _offers)
+            {
+                int totalItems = 0;
+                foreach (char item in items)
+                {
+                    if (item.ToString() == offer.Item1)
+                    {
+                        totalItems++;
+                    }
+
+                    
+                }
+                total -= totalItems / offer.Item2 * offer.Item3;
+            }
             return total;
         }
     }
