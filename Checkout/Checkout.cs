@@ -8,6 +8,13 @@ namespace Checkout
 {
     public class Checkout
     {
+        private Dictionary<string, int> _prices;
+
+        public Checkout(Dictionary<string, int> prices)
+        {
+            _prices = prices;
+        }
+
         public int Scan(string item)
         {
             if (item == "A")
