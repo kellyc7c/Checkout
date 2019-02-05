@@ -21,6 +21,10 @@ namespace Checkout
             {
                 return _prices[item.Substring(0,1)] + _prices[item.Substring(1, 1)];
             }
+            else if (item.Length == 3)
+            {
+                return _prices[item.Substring(0, 1)] + _prices[item.Substring(1, 1)] + _prices[item.Substring(2, 1)];
+            }
             return _prices[item];
         }
     }

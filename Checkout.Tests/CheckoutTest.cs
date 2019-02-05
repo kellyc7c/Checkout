@@ -58,7 +58,7 @@ namespace Checkout.Tests
 
         [TestCase("ABD", 95)]
         [TestCase("BCA", 100)]
-        [TestCase("CDB", 85)]
+        [TestCase("CDB", 65)]
         [TestCase("DAB", 95)]
         public void ScanThreeDifferentItemReturnsCorrectPrice(string items, int expectedPrice)
         {
