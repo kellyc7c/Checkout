@@ -17,20 +17,7 @@ namespace Checkout
 
         public int Scan(string item)
         {
-            if (item == "A")
-            {
-                return 50;
-            }
-            else if (item == "B")
-            {
-                return 30;
-            }
-            else if (item == "C")
-            {
-                return 20;
-            }
-
-            return 15;
+            return _prices[item];
         }
     }
 }
