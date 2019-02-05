@@ -71,7 +71,7 @@ namespace Checkout.Tests
 
         [TestCase("ABCD", 115)]
         [TestCase("AABCD", 165)]
-        [TestCase("BADCDB", 175)]
+        [TestCase("BADCDB", 160)]
         public void ScanMultipleDifferentItemsReturnsCorrectPrice(string items, int expectedPrice)
         {
             var checkout = new Checkout(_prices);

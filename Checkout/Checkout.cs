@@ -15,17 +15,16 @@ namespace Checkout
             _prices = prices;
         }
 
-        public int Scan(string item)
+        public int Scan(string items)
         {
-            if (item.Length == 2)
+            int total = 0;
+
+            foreach (char item in items)
             {
-                return _prices[item.Substring(0,1)] + _prices[item.Substring(1, 1)];
+                total += _prices[item.ToString()];
             }
-            else if (item.Length == 3)
-            {
-                return _prices[item.Substring(0, 1)] + _prices[item.Substring(1, 1)] + _prices[item.Substring(2, 1)];
-            }
-            return _prices[item];
+
+            return total;
         }
     }
 }
