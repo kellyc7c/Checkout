@@ -55,5 +55,18 @@ namespace Checkout.Tests
 
             Assert.AreEqual(expectedPrice, price);
         }
+
+        [TestCase("ABD", 95)]
+        [TestCase("BCA", 100)]
+        [TestCase("CDB", 85)]
+        [TestCase("DAB", 95)]
+        public void ScanThreeDifferentItemReturnsCorrectPrice(string items, int expectedPrice)
+        {
+            var checkout = new Checkout(_prices);
+
+            int price = checkout.Scan(items);
+
+            Assert.AreEqual(expectedPrice, price);
+        }
     }
 }
