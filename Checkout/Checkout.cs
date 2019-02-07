@@ -11,16 +11,6 @@ namespace Checkout
         private Dictionary<string, int> _prices;
         private List<Offer> _offers;
 
-        public Checkout(Dictionary<string, int> prices, List<Tuple<string, int, int>> offers)
-        {
-            _prices = prices;
-            _offers = new List<Offer>();
-            foreach (Tuple<string, int, int> offer in offers)
-            {
-                _offers.Add(new Offer(offer.Item1, offer.Item2, offer.Item3));
-            }
-        }
-
         public Checkout(Dictionary<string, int> prices, List<Offer> offers)
         {
             _prices = prices;
