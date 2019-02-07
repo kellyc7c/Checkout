@@ -19,6 +19,14 @@ namespace Checkout
 
         public int Scan(string items)
         {
+            int total = GetTotal(items);
+            total = ApplyDiscounts(items, total);
+
+            return total;
+        }
+
+        private int GetTotal(string items)
+        {
             int total = 0;
 
             foreach (char item in items)
@@ -26,7 +34,7 @@ namespace Checkout
                 total += _prices[item.ToString()];
             }
 
-            return ApplyDiscounts(items, total);
+            return total;
         }
 
         private int ApplyDiscounts(string items, int total)
