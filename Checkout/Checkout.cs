@@ -20,7 +20,7 @@ namespace Checkout
         public int Scan(string items)
         {
             int total = GetTotal(items);
-            total = ApplyDiscounts(items, total);
+            total -= GetDiscounts(items);
 
             return total;
         }
@@ -37,23 +37,30 @@ namespace Checkout
             return total;
         }
 
-        private int ApplyDiscounts(string items, int total)
+        private int GetDiscounts(string items)
         {
+            int totalDiscount = 0;
+
             foreach (Offer offer in _offers)
             {
-                int totalItems = 0;
-                foreach (char item in items)
-                {
-                    if (item.ToString() == offer.ItemID)
-                    {
-                        totalItems++;
-                    }
-
-                    
-                }
-                total -= totalItems / offer.NumberOfItemsForOffer * offer.Discount;
+                totalDiscount += GetSingleDiscount(items, offer);
             }
-            return total;
+            return totalDiscount;
+        }
+
+        private int GetSingleDiscount(string items, Offer offer)
+        {
+            int numberOfOfferItemsScanned = 0;
+
+            foreach (char item in items)
+            {
+                if (item.ToString() == offer.ItemID)
+                {
+                    numberOfOfferItemsScanned++;
+                }
+            }
+
+            return numberOfOfferItemsScanned / offer.NumberOfItemsForOffer * offer.Discount;
         }
     }
 
