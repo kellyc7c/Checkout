@@ -56,4 +56,18 @@ namespace Checkout
             return total;
         }
     }
+
+    public class Offer
+    {
+        public string ItemID { get; }
+        public int NumberOfItemsForOffer { get; }
+        public int Discount { get; }
+
+        public Offer(string itemID, int numberOfItemsForOffer, int discount)
+        {
+            this.ItemID = itemID;
+            this.NumberOfItemsForOffer = numberOfItemsForOffer;
+            this.Discount = discount;
+        }
+    }
 }
