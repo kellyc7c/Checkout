@@ -9,9 +9,19 @@ namespace Checkout
     public class Checkout
     {
         private Dictionary<string, int> _prices;
-        private List<Tuple<string, int, int>> _offers;
+        private List<Offer> _offers;
 
         public Checkout(Dictionary<string, int> prices, List<Tuple<string, int, int>> offers)
+        {
+            _prices = prices;
+            _offers = new List<Offer>();
+            foreach (Tuple<string, int, int> offer in offers)
+            {
+                _offers.Add(new Offer(offer.Item1, offer.Item2, offer.Item3));
+            }
+        }
+
+        public Checkout(Dictionary<string, int> prices, List<Offer> offers)
         {
             _prices = prices;
             _offers = offers;
@@ -39,19 +49,19 @@ namespace Checkout
 
         private int ApplyDiscounts(string items, int total)
         {
-            foreach (Tuple<string, int, int> offer in _offers)
+            foreach (Offer offer in _offers)
             {
                 int totalItems = 0;
                 foreach (char item in items)
                 {
-                    if (item.ToString() == offer.Item1)
+                    if (item.ToString() == offer.ItemID)
                     {
                         totalItems++;
                     }
 
                     
                 }
-                total -= totalItems / offer.Item2 * offer.Item3;
+                total -= totalItems / offer.NumberOfItemsForOffer * offer.Discount;
             }
             return total;
         }
