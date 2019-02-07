@@ -122,5 +122,16 @@ namespace Checkout.Tests
 
             Assert.AreEqual(expectedPrice, price);
         }
+
+        [TestCase("BACCADA", 215)]
+        [TestCase("BBACCADAABAA", 390)]
+        public void CheckDiscountApplysForOffersWhenMultipleDifferntAreScannedAlt(string items, int expectedPrice)
+        {
+            var checkout = new Checkout(_prices, _offersAlt);
+
+            int price = checkout.Scan(items);
+
+            Assert.AreEqual(expectedPrice, price);
+        }
     }
 }
