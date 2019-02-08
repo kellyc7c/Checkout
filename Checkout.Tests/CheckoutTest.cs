@@ -11,16 +11,16 @@ namespace Checkout.Tests
     [TestFixture]
     public class CheckoutTest
     {
-        private Dictionary<string, int> _prices = new Dictionary<string, int>() {
-            { "A", 50 },
-            { "B", 30 },
-            { "C", 20 },
-            { "D", 15 } };
+        private Dictionary<char, int> _prices = new Dictionary<char, int>() {
+            { 'A', 50 },
+            { 'B', 30 },
+            { 'C', 20 },
+            { 'D', 15 } };
 
         private List<Offer> _offers = new List<Offer>()
         {
-            new Offer("A", 3, 20),
-            new Offer("B", 2, 15)
+            new Offer('A', 3, 20),
+            new Offer('B', 2, 15)
         };
 
         [TestCase("A", 50)]

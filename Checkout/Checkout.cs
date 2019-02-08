@@ -8,10 +8,10 @@ namespace Checkout
 {
     public class Checkout
     {
-        readonly private Dictionary<string, int> _prices;
+        readonly private Dictionary<char, int> _prices;
         readonly private List<Offer> _offers;
 
-        public Checkout(Dictionary<string, int> prices, List<Offer> offers)
+        public Checkout(Dictionary<char, int> prices, List<Offer> offers)
         {
             _prices = prices;
             _offers = offers;
@@ -52,7 +52,7 @@ namespace Checkout
             foreach (var item in numberOfEachItemScanned)
             {
 
-                total += _prices[item.Key.ToString()] * item.Value;
+                total += _prices[item.Key] * item.Value;
             }
 
             return total;
@@ -73,9 +73,9 @@ namespace Checkout
         {
             int numberOfOfferItemsScanned;
 
-            if (numberOfEachItemScanned.ContainsKey(offer.ItemID[0]))
+            if (numberOfEachItemScanned.ContainsKey(offer.ItemID))
             {
-                numberOfOfferItemsScanned = numberOfEachItemScanned[offer.ItemID[0]];
+                numberOfOfferItemsScanned = numberOfEachItemScanned[offer.ItemID];
             }
             else
             {
@@ -89,11 +89,11 @@ namespace Checkout
 
     public class Offer
     {
-        public string ItemID { get; }
+        public char ItemID { get; }
         public int NumberOfItemsForOffer { get; }
         public int Discount { get; }
 
-        public Offer(string itemID, int numberOfItemsForOffer, int discount)
+        public Offer(char itemID, int numberOfItemsForOffer, int discount)
         {
             this.ItemID = itemID;
             this.NumberOfItemsForOffer = numberOfItemsForOffer;
