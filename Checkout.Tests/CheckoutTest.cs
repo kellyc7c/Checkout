@@ -106,5 +106,15 @@ namespace Checkout.Tests
 
             Assert.AreEqual(expectedPrice, price);
         }
+
+        [Test]
+        public void InvalidItemsInScannedInputAreIgnoredWhenCalculatingPrice()
+        {
+            var checkout = new Checkout(_prices, _offers);
+
+            int price = checkout.Scan("AGB5CDV");
+
+            Assert.AreEqual(115, price);
+        }
     }
 }
