@@ -8,8 +8,8 @@ namespace Checkout
 {
     public class Checkout
     {
-        private Dictionary<string, int> _prices;
-        private List<Offer> _offers;
+        readonly private Dictionary<string, int> _prices;
+        readonly private List<Offer> _offers;
 
         public Checkout(Dictionary<string, int> prices, List<Offer> offers)
         {
@@ -19,46 +19,69 @@ namespace Checkout
 
         public int Scan(string items)
         {
-            int total = GetTotal(items);
-            total -= GetDiscounts(items);
+            var numberOfEachItemScanned = ParseInput(items);
+            int total = GetTotalPrice(numberOfEachItemScanned);
+            total -= GetDiscounts(numberOfEachItemScanned);
 
             return total;
         }
 
-        private int GetTotal(string items)
+        private Dictionary<char, int> ParseInput(string items)
         {
-            int total = 0;
+            var numberOfEachItemScanned = new Dictionary<char, int>();
 
             foreach (char item in items)
             {
-                total += _prices[item.ToString()];
+                if (numberOfEachItemScanned.ContainsKey(item))
+                {
+                    numberOfEachItemScanned[item]++;
+                }
+                else
+                {
+                    numberOfEachItemScanned[item] = 1;
+                }
+            }
+
+            return numberOfEachItemScanned;
+        }
+
+        private int GetTotalPrice(Dictionary<char, int> numberOfEachItemScanned)
+        {
+            int total = 0;
+
+            foreach (var item in numberOfEachItemScanned)
+            {
+
+                total += _prices[item.Key.ToString()] * item.Value;
             }
 
             return total;
         }
 
-        private int GetDiscounts(string items)
+        private int GetDiscounts(Dictionary<char, int> numberOfEachItemScanned)
         {
             int totalDiscount = 0;
 
             foreach (Offer offer in _offers)
             {
-                totalDiscount += GetSingleDiscount(items, offer);
+                totalDiscount += GetSingleDiscount(numberOfEachItemScanned, offer);
             }
             return totalDiscount;
         }
 
-        private int GetSingleDiscount(string items, Offer offer)
+        private int GetSingleDiscount(Dictionary<char, int> numberOfEachItemScanned, Offer offer)
         {
-            int numberOfOfferItemsScanned = 0;
+            int numberOfOfferItemsScanned;
 
-            foreach (char item in items)
+            if (numberOfEachItemScanned.ContainsKey(offer.ItemID[0]))
             {
-                if (item.ToString() == offer.ItemID)
-                {
-                    numberOfOfferItemsScanned++;
-                }
+                numberOfOfferItemsScanned = numberOfEachItemScanned[offer.ItemID[0]];
             }
+            else
+            {
+                numberOfOfferItemsScanned = 0;
+            }
+            
 
             return numberOfOfferItemsScanned / offer.NumberOfItemsForOffer * offer.Discount;
         }
