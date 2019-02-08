@@ -32,6 +32,8 @@ namespace Checkout
 
             foreach (char item in items)
             {
+                if (!_prices.ContainsKey(item)) continue;
+
                 if (numberOfEachItemScanned.ContainsKey(item))
                 {
                     numberOfEachItemScanned[item]++;
